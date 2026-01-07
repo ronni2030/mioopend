@@ -23,7 +23,8 @@ export const usePlaces = (page = 1, limit = 10) => {
       setPlaces(response.places);
       setTotal(response.pagination.total);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error al cargar lugares');
+      const errorMessage = err instanceof Error ? err.message : 'Error al cargar lugares';
+      setError(errorMessage);
       console.error('Error fetching places:', err);
     } finally {
       setLoading(false);
@@ -67,7 +68,8 @@ export const usePlace = (id: string) => {
         const data = await placesService.getPlaceById(id);
         setPlace(data);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Error al cargar el lugar');
+        const errorMessage = err instanceof Error ? err.message : 'Error al cargar el lugar';
+        setError(errorMessage);
         console.error('Error fetching place:', err);
       } finally {
         setLoading(false);

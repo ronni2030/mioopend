@@ -21,9 +21,6 @@ import { FavoritePlacesListScreen } from './features/places/screens/FavoritePlac
 import { AddPlaceScreen } from './features/places/screens/AddPlaceScreen';
 import { PlaceDetailScreen } from './features/places/screens/PlaceDetailScreen';
 
-// Componentes de prueba
-import { ConnectionTest as ConnectionTestScreen } from './components/ConnectionTest';
-
 function App() {
   return (
     <Routes>
@@ -46,9 +43,6 @@ function App() {
       <Route path="/places" element={<FavoritePlacesListScreen />} />
       <Route path="/places/add" element={<AddPlaceScreen />} />
       <Route path="/places/:id" element={<PlaceDetailScreen />} />
-      
-      {/* Ruta de prueba de conexión */}
-      <Route path="/test-connection" element={<ConnectionTestScreen />} />
       
       {/* Redirección por defecto */}
       <Route path="*" element={<Navigate to="/" replace />} />

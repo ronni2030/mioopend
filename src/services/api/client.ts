@@ -1,19 +1,16 @@
 import axios, { type AxiosInstance, type InternalAxiosRequestConfig } from 'axios';
 
-// Configuración base de la API
 const API_BASE_URL = 'http://localhost:8888';
 
-// Crear instancia de axios
 const api: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true,
+  withCredentials: false,
 });
 
-// Interceptor de solicitudes
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const token = localStorage.getItem('authToken');
@@ -27,7 +24,6 @@ api.interceptors.request.use(
   }
 );
 
-// Interceptor de respuestas
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -45,12 +41,10 @@ api.interceptors.response.use(
         } catch (refreshError) {
           localStorage.removeItem('authToken');
           localStorage.removeItem('refreshToken');
-          window.location.href = '/login';
           return Promise.reject(refreshError);
         }
       } else {
         localStorage.removeItem('authToken');
-        window.location.href = '/login';
       }
     }
 
