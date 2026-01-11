@@ -5,10 +5,9 @@ import App from "./App.tsx";
 import { ThemeProvider } from './shared/contexts/ThemeContext';
 import { VoiceNavigationProvider } from './shared/contexts/VoiceNavigationContext';
 import { I18nProvider } from './i18n/i18nContext';
-import "./features/users/styles/index.css";
-import "./index.css";
-import "./styles.css";
-import "./animations.css";
+
+// SOLO IMPORTAR ESTE ARCHIVO (combina todos los demás)
+import "./index.css"; // Este archivo debe contener todo el CSS global necesario
 
 const rootElement = document.getElementById("root");
 if (!rootElement) throw new Error("Failed to find the root element");

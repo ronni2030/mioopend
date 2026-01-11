@@ -1,0 +1,56 @@
+/* src/global.css - CSS GLOBAL UNIFICADO */
+
+/* 1. Tailwind y variables */
+@import "tailwindcss";
+
+:root {
+  /* Variables del theme (mantén las de index.css) */
+  --color-primary: #4B1F6F;
+  --color-secondary: #7A3EB1;
+  --color-accent: #B983FF;
+  --color-background: #F6F1FB;
+  --color-text-main: #1B1026;
+  --color-text-secondary: #5F5A68;
+  --color-error: #8B1E3F;
+  --color-success: #1F7A6F;
+  
+  /* Espaciado */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* Bordes */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+}
+
+/* 2. Resets y normalización */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #1B1026;
+  color: white;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* 3. Utilidades específicas de Tailwind si necesitas sobreescribir */
+/* Agrega solo las utilidades ABSOLUTAMENTE necesarias aquí */
+
+/* 4. Estilos de componentes globales (si son realmente necesarios) */
+/* Si no se usan en todos lados, muévelos a CSS Modules */
