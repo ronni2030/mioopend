@@ -1,52 +1,38 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import './Styles.css';
-
-// Dashboard
-import { Dashboard } from './features/dashboard/screens/DashboardScreen';
-
-// Identificación
-import { CardSetupScreen } from './features/identification-card/screens/CardSetupScreen';
-import { CardViewScreen } from './features/identification-card/screens/CardViewScreen';
-import { CardUpdateScreen } from './features/identification-card/screens/CardUpdateScreen';
-
-// Navegación
-import { DestinationScreen } from './features/navigation/screens/DestinationScreen';
-import { LocationScreen } from './features/navigation/screens/LocationScreen';
-
-// Historial
-import { HistoryListScreen } from './features/navigation-history/screens/HistoryListScreen';
-
-// Lugares
-import { FavoritePlacesListScreen } from './features/places/screens/FavoritePlacesListScreen';
-import { AddPlaceScreen } from './features/places/screens/AddPlaceScreen';
-import { PlaceDetailScreen } from './features/places/screens/PlaceDetailScreen';
+import { Routes, Route } from 'react-router-dom';
+import { VoiceNavigationProvider } from './shared/contexts/VoiceNavigationContext';
+import { BottomNav } from './shared/components/navigation/BottomNav';
+import HomePage from './pages/HomePage';
+import NavigationPage from './pages/NavigationPage';
+import LocationPage from './pages/LocationPage';
+import PlacesPage from './pages/PlacesPage';
+import EmergencyContactsPage from './pages/EmergencyContactsPage';
+import IncidentsPage from './pages/IncidentsPage';
+import SupportPage from './pages/SupportPage';
+import HistoryPage from './pages/HistoryPage';
+import IDCardPage from './pages/IDCardPage';
+import ProfilePage from './pages/ProfilePage';
+import SettingsPage from './pages/SettingsPage';
 
 function App() {
   return (
-    <Routes>
-      {/* Dashboard principal */}
-      <Route path="/" element={<Dashboard />} />
-      
-      {/* Rutas de identificación */}
-      <Route path="/setup-card" element={<CardSetupScreen />} />
-      <Route path="/view-card" element={<CardViewScreen />} />
-      <Route path="/update-card" element={<CardUpdateScreen />} />
-      
-      {/* Rutas de navegación GPS */}
-      <Route path="/location" element={<LocationScreen />} />
-      <Route path="/new-route" element={<DestinationScreen />} />
-      
-      {/* Ruta de historial */}
-      <Route path="/history-list" element={<HistoryListScreen />} />
-      
-      {/* Rutas de lugares favoritos */}
-      <Route path="/places" element={<FavoritePlacesListScreen />} />
-      <Route path="/places/add" element={<AddPlaceScreen />} />
-      <Route path="/places/:id" element={<PlaceDetailScreen />} />
-      
-      {/* Redirección por defecto */}
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <VoiceNavigationProvider>
+      <div className="pb-16">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/navigation" element={<NavigationPage />} />
+          <Route path="/location" element={<LocationPage />} />
+          <Route path="/places" element={<PlacesPage />} />
+          <Route path="/emergency-contacts" element={<EmergencyContactsPage />} />
+          <Route path="/incidents" element={<IncidentsPage />} />
+          <Route path="/support" element={<SupportPage />} />
+          <Route path="/history" element={<HistoryPage />} />
+          <Route path="/view-card" element={<IDCardPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+        </Routes>
+        <BottomNav />
+      </div>
+    </VoiceNavigationProvider>
   );
 }
 

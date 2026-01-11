@@ -1,4 +1,28 @@
-// Endpoints de la API - OpenBlind (coinciden con backend real)
+/**
+ * Configuración de la API - OpenBlind Cliente
+ *
+ * IMPORTANTE: No usar archivos .env por problemas con VPS
+ * Toda la configuración va directamente aquí
+ */
+
+export const API_CONFIG = {
+  // URL base del backend
+  BASE_URL: 'http://localhost:8888',
+
+  // Timeout para requests (30 segundos)
+  TIMEOUT: 30000,
+
+  // Headers por defecto
+  HEADERS: {
+    'Content-Type': 'application/json',
+  },
+
+  // Configuración de retry
+  RETRY_ATTEMPTS: 3,
+  RETRY_DELAY: 1000,
+} as const;
+
+// Endpoints de la API (coinciden con el backend REAL)
 export const API_ENDPOINTS = {
   // Usuarios
   usuarios: {
@@ -39,7 +63,7 @@ export const API_ENDPOINTS = {
     eliminar: (id: number) => `/contactos-emergencia/${id}`,
   },
 
-  // Navegación
+  // Navegación (Guía de Voz)
   navegacion: {
     calcularRuta: '/api/navegacion/calcular-ruta',
     iniciar: '/api/navegacion/iniciar',
@@ -69,7 +93,7 @@ export const API_ENDPOINTS = {
     limpiar: (idUsuario: number) => `/rutas/limpiar/${idUsuario}`,
   },
 
-  // Incidencias
+  // Incidencias (Reportes)
   incidencias: {
     base: '/api/incidencias',
     porUsuario: (idUsuario: number) => `/api/incidencias/usuario/${idUsuario}`,
@@ -80,12 +104,21 @@ export const API_ENDPOINTS = {
     eliminar: (id: number) => `/api/incidencias/${id}`,
   },
 
-  // Soporte
+  // Soporte (Tickets)
   soporte: {
     base: '/api/admin/soporte',
     porUsuario: (idUsuario: number) => `/api/admin/soporte/usuario/${idUsuario}`,
     crear: '/api/admin/soporte',
     actualizar: (id: number) => `/api/admin/soporte/${id}`,
     obtener: (id: number) => `/api/admin/soporte/${id}`,
+  },
+
+  // Tracking de Ubicación
+  tracking: {
+    base: '/api/tracking',
+    iniciar: '/api/tracking/iniciar',
+    actualizar: '/api/tracking/actualizar',
+    detener: '/api/tracking/detener',
+    historial: (idUsuario: number) => `/api/tracking/historial/${idUsuario}`,
   },
 } as const;

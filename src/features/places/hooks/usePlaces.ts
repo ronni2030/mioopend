@@ -43,6 +43,27 @@ export const usePlaces = (page = 1, limit = 10) => {
     setFilters({ search: '', type: undefined });
   };
 
+  // Leer lugares por voz
+  const readPlaces = () => {
+    if ('speechSynthesis' in window) {
+      if (places.length === 0) {
+        const utterance = new SpeechSynthesisUtterance('No hay lugares favoritos');
+        utterance.lang = 'es-ES';
+        window.speechSynthesis.speak(utterance);
+        return;
+      }
+
+      let text = `Tienes ${places.length} lugares favoritos. `;
+      places.forEach((place, index) => {
+        text += `${index + 1}, ${place.nombre}. `;
+      });
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'es-ES';
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+
   return {
     places,
     total,
@@ -52,6 +73,7 @@ export const usePlaces = (page = 1, limit = 10) => {
     updateFilters,
     clearFilters,
     refetch: fetchPlaces,
+    readPlaces,
   };
 };
 

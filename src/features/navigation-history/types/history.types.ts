@@ -1,10 +1,11 @@
 //exporta todo lo relacionado a el historial de rutas
 
-export interface Route {  // <--- Asegúrate de que diga 'export'
+export interface Route {
   id: string;
   origin: string;
   destination: string;
   date: string;
+  distance: string;
   duration: string;
   isFavorite: boolean;
 }

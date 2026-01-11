@@ -1,0 +1,328 @@
+/**
+ * Tarjeta de Identificación Digital - Diseño estético modular funcional
+ */
+
+import React, { useState, useEffect } from 'react';
+import { useVoiceNavigation } from '../shared/contexts/VoiceNavigationContext';
+import { QRCodeSVG } from 'qrcode.react';
+import { PageLayout } from '../shared/components/layout/PageLayout';
+import { Card, Button, Input } from '../shared/components/ui';
+
+interface IDCard {
+  id: number;
+  nombreCompleto: string;
+  cedula: string;
+  tipoSangre: string;
+  alergias: string;
+  medicamentos: string;
+  condicionesMedicas: string;
+  contactoEmergencia: string;
+  telefonoEmergencia: string;
+  foto?: string;
+}
+
+const IDCardPage: React.FC = () => {
+  const { speak } = useVoiceNavigation();
+  const [card, setCard] = useState<IDCard | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [editing, setEditing] = useState(false);
+  const [showFull, setShowFull] = useState(false);
+
+  const [formData, setFormData] = useState({
+    nombreCompleto: '',
+    cedula: '',
+    tipoSangre: 'O+',
+    alergias: '',
+    medicamentos: '',
+    condicionesMedicas: '',
+    contactoEmergencia: '',
+    telefonoEmergencia: '',
+  });
+
+  useEffect(() => {
+    // Simulación de carga - en producción vendría del backend
+    setTimeout(() => {
+      const mockCard: IDCard = {
+        id: 1,
+        nombreCompleto: 'Juan Pérez López',
+        cedula: '1234567890',
+        tipoSangre: 'O+',
+        alergias: 'Ninguna',
+        medicamentos: 'Ninguno',
+        condicionesMedicas: 'Ceguera total',
+        contactoEmergencia: 'María Pérez',
+        telefonoEmergencia: '0991234567',
+      };
+      setCard(mockCard);
+      setFormData(mockCard);
+      setLoading(false);
+      speak('Tarjeta de identificación cargada');
+    }, 500);
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formData.nombreCompleto.trim() || !formData.cedula.trim()) {
+      speak('Completa nombre y cédula', 'high');
+      return;
+    }
+
+    try {
+      setLoading(true);
+      // Aquí iría la llamada al backend
+      setTimeout(() => {
+        setCard({ id: 1, ...formData });
+        speak('Tarjeta actualizada correctamente', 'high');
+        setEditing(false);
+        setLoading(false);
+      }, 500);
+    } catch (error) {
+      console.error('Error updating card:', error);
+      speak('Error al actualizar tarjeta', 'high');
+      setLoading(false);
+    }
+  };
+
+  const readCardInfo = () => {
+    if (!card) return;
+
+    const text = `
+      Tarjeta de identificación de ${card.nombreCompleto}.
+      Cédula: ${card.cedula}.
+      Tipo de sangre: ${card.tipoSangre}.
+      Condiciones médicas: ${card.condicionesMedicas}.
+      Contacto de emergencia: ${card.contactoEmergencia}, teléfono ${card.telefonoEmergencia}.
+    `;
+    speak(text, 'high');
+  };
+
+  return (
+    <PageLayout title="Mi Tarjeta ID">
+      <div className="space-y-4">
+        {loading && !editing ? (
+          <Card className="text-center py-8 stagger-item">
+            <div className="inline-block animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-purple-500 mb-3"></div>
+            <p className="text-purple-200 font-semibold">Cargando tarjeta...</p>
+          </Card>
+        ) : !editing && card ? (
+          <>
+            {/* Vista de Tarjeta */}
+            <Card className="bg-gradient-to-br from-purple-600 to-purple-800 rounded-3xl p-6 shadow-2xl stagger-item">
+              <div className="flex items-center justify-between mb-4">
+                <div className="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center text-3xl bounce-soft">
+                  🆔
+                </div>
+                <div className="text-right">
+                  <p className="text-xs text-purple-200">OpenBlind ID</p>
+                  <p className="text-sm font-bold drop-shadow">#{card.cedula.slice(-4)}</p>
+                </div>
+              </div>
+
+              <h2 className="text-2xl font-bold mb-1 drop-shadow-lg">{card.nombreCompleto}</h2>
+              <p className="text-sm text-purple-200 mb-4">CI: {card.cedula}</p>
+
+              <div className="grid grid-cols-2 gap-3 text-sm mb-4">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 border border-white/20">
+                  <p className="text-xs text-purple-200">Tipo de Sangre</p>
+                  <p className="font-bold text-lg drop-shadow">{card.tipoSangre}</p>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 border border-white/20">
+                  <p className="text-xs text-purple-200">Emergencia</p>
+                  <p className="font-bold text-xs truncate drop-shadow">{card.contactoEmergencia}</p>
+                </div>
+              </div>
+
+              {/* Código QR con información de emergencia */}
+              <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-lg">
+                <p className="text-purple-900 text-xs font-bold mb-2">ESCANEAR EN EMERGENCIA</p>
+                <QRCodeSVG
+                  value={JSON.stringify({
+                    nombre: card.nombreCompleto,
+                    cedula: card.cedula,
+                    tipoSangre: card.tipoSangre,
+                    condiciones: card.condicionesMedicas,
+                    alergias: card.alergias,
+                    medicamentos: card.medicamentos,
+                    contactoEmergencia: card.contactoEmergencia,
+                    telefonoEmergencia: card.telefonoEmergencia,
+                    app: 'OpenBlind',
+                  })}
+                  size={140}
+                  level="H"
+                />
+                <p className="text-purple-900 text-xs mt-2 text-center">
+                  Muestra este código a conductores o personal médico
+                </p>
+              </div>
+
+              {showFull && (
+                <div className="mt-4 space-y-2 text-sm fade-in">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                    <p className="text-xs text-purple-200 mb-1">Condiciones Médicas</p>
+                    <p className="font-semibold drop-shadow">{card.condicionesMedicas || 'Ninguna'}</p>
+                  </div>
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                    <p className="text-xs text-purple-200 mb-1">Alergias</p>
+                    <p className="font-semibold drop-shadow">{card.alergias || 'Ninguna'}</p>
+                  </div>
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                    <p className="text-xs text-purple-200 mb-1">Medicamentos</p>
+                    <p className="font-semibold drop-shadow">{card.medicamentos || 'Ninguno'}</p>
+                  </div>
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                    <p className="text-xs text-purple-200 mb-1">Contacto de Emergencia</p>
+                    <p className="font-semibold drop-shadow">{card.contactoEmergencia}</p>
+                    <p className="text-purple-200">📞 {card.telefonoEmergencia}</p>
+                  </div>
+                </div>
+              )}
+
+              <button
+                onClick={() => {
+                  setShowFull(!showFull);
+                  speak(showFull ? 'Vista compacta' : 'Vista completa');
+                }}
+                className="w-full mt-4 bg-white/20 hover:bg-white/30 rounded-xl p-2 text-sm font-semibold smooth-transition border border-white/30"
+              >
+                {showFull ? '▲ Ver Menos' : '▼ Ver Más'}
+              </button>
+            </Card>
+
+            {/* Botones de acción */}
+            <div className="grid grid-cols-2 gap-3">
+              <Button onClick={readCardInfo} variant="secondary" className="stagger-item" style={{ animationDelay: '0.1s' }}>
+                🔊 Leer Info
+              </Button>
+              <Button
+                onClick={() => {
+                  setEditing(true);
+                  speak('Modo de edición activado');
+                }}
+                variant="primary"
+                className="stagger-item"
+                style={{ animationDelay: '0.2s' }}
+              >
+                ✏️ Editar
+              </Button>
+            </div>
+          </>
+        ) : (
+          <>
+            {/* Formulario de Edición */}
+            <Card className="stagger-item">
+              <form onSubmit={handleSubmit} className="space-y-3">
+                <Input
+                  label="Nombre Completo"
+                  type="text"
+                  value={formData.nombreCompleto}
+                  onChange={(e) => setFormData({ ...formData, nombreCompleto: e.target.value })}
+                  placeholder="Juan Pérez López"
+                  required
+                />
+
+                <Input
+                  label="Cédula/ID"
+                  type="text"
+                  value={formData.cedula}
+                  onChange={(e) => setFormData({ ...formData, cedula: e.target.value })}
+                  placeholder="1234567890"
+                  required
+                />
+
+                <div>
+                  <label className="block text-sm font-semibold text-purple-200 mb-2">Tipo de Sangre</label>
+                  <select
+                    value={formData.tipoSangre}
+                    onChange={(e) => setFormData({ ...formData, tipoSangre: e.target.value })}
+                    className="w-full bg-white/10 backdrop-blur-md rounded-xl p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 border border-white/20 shadow-inner"
+                  >
+                    {['O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-'].map(type => (
+                      <option key={type} value={type} className="bg-purple-900">{type}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-purple-200 mb-2">Condiciones Médicas</label>
+                  <textarea
+                    value={formData.condicionesMedicas}
+                    onChange={(e) => setFormData({ ...formData, condicionesMedicas: e.target.value })}
+                    rows={2}
+                    className="w-full bg-white/10 backdrop-blur-md rounded-xl p-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 border border-white/20 shadow-inner"
+                    placeholder="Ej: Ceguera total, Diabetes..."
+                  />
+                </div>
+
+                <Input
+                  label="Alergias"
+                  type="text"
+                  value={formData.alergias}
+                  onChange={(e) => setFormData({ ...formData, alergias: e.target.value })}
+                  placeholder="Ej: Penicilina, Mariscos..."
+                />
+
+                <Input
+                  label="Medicamentos"
+                  type="text"
+                  value={formData.medicamentos}
+                  onChange={(e) => setFormData({ ...formData, medicamentos: e.target.value })}
+                  placeholder="Ej: Insulina, Aspirina..."
+                />
+
+                <Input
+                  label="Contacto de Emergencia"
+                  type="text"
+                  value={formData.contactoEmergencia}
+                  onChange={(e) => setFormData({ ...formData, contactoEmergencia: e.target.value })}
+                  placeholder="Nombre del contacto"
+                />
+
+                <Input
+                  label="Teléfono de Emergencia"
+                  type="tel"
+                  value={formData.telefonoEmergencia}
+                  onChange={(e) => setFormData({ ...formData, telefonoEmergencia: e.target.value })}
+                  placeholder="0991234567"
+                />
+
+                <div className="flex gap-3 pt-2">
+                  <Button
+                    type="button"
+                    onClick={() => {
+                      setEditing(false);
+                      if (card) setFormData(card);
+                      speak('Edición cancelada');
+                    }}
+                    variant="danger"
+                    className="flex-1"
+                  >
+                    ❌ Cancelar
+                  </Button>
+                  <Button
+                    type="submit"
+                    disabled={loading}
+                    variant="success"
+                    className="flex-1"
+                  >
+                    ✅ Guardar
+                  </Button>
+                </div>
+              </form>
+            </Card>
+          </>
+        )}
+
+        {/* Información importante */}
+        <Card className="bg-yellow-900/30 border-yellow-500/30 stagger-item" style={{ animationDelay: '0.3s' }}>
+          <p className="text-sm text-yellow-200 flex items-start gap-2">
+            <span className="text-lg">⚠️</span>
+            <span>Esta tarjeta contiene información médica importante. Asegúrate de mantenerla actualizada para emergencias.</span>
+          </p>
+        </Card>
+      </div>
+    </PageLayout>
+  );
+};
+
+export default IDCardPage;

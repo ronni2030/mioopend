@@ -10,6 +10,16 @@ body {
   font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #1B1026;
+}
+
+/* Mobile app wrapper - centered and constrained */
+#root {
+  max-width: 430px;
+  margin: 0 auto;
+  background-color: #1B1026;
+  min-height: 100vh;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 /* Loading spinner */
