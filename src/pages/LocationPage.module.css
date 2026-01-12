@@ -1,0 +1,146 @@
+/**
+ * LocationPage.module.css - Mi Ubicación accesible
+ */
+
+.locationContainer {
+  min-height: 100vh;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #001a1a 0%, #003333 100%);
+}
+
+.mapCard {
+  border: 6px solid #00ffff;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 255, 255, 0.6);
+  margin-bottom: 2rem;
+  animation: mapEntrance 0.8s ease;
+}
+
+@keyframes mapEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.locationInfoCard {
+  background: linear-gradient(135deg, #003333 0%, #004d4d 100%);
+  border: 5px solid #00ffff;
+  border-radius: 25px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.5);
+}
+
+.locationHeader {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.locationIcon {
+  background: linear-gradient(135deg, #ff00ff 0%, #cc00cc 100%);
+  border: 4px solid #ffff00;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  flex-shrink: 0;
+  box-shadow: 0 10px 25px rgba(255, 0, 255, 0.6);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.locationTitle {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #ffff00;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
+  margin-bottom: 0.3rem;
+}
+
+.coordinates {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #00ffff;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.addressBox {
+  background: rgba(0, 255, 255, 0.15);
+  border: 3px solid #00ffff;
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.addressText {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  line-height: 1.6;
+}
+
+.updateButton {
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 900;
+  border-radius: 20px;
+  border: 4px solid #ffff00;
+  background: linear-gradient(135deg, #00cccc 0%, #009999 100%);
+  color: #000000;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 20px rgba(0, 204, 204, 0.5);
+}
+
+.updateButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 204, 204, 0.7);
+}
+
+.routeButton {
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 900;
+  border-radius: 20px;
+  border: 4px solid #00ff00;
+  background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 20px rgba(0, 255, 0, 0.5);
+}
+
+.routeButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 255, 0, 0.7);
+}

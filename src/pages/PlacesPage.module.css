@@ -1,0 +1,322 @@
+/**
+ * PlacesPage.module.css - Lugares Favoritos accesibles
+ */
+
+.placesContainer {
+  min-height: 100vh;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #1a0066 0%, #2d0099 100%);
+}
+
+.formCard {
+  background: linear-gradient(135deg, #2d0099 0%, #4000cc 100%);
+  border: 5px solid #00ffff;
+  border-radius: 25px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.5);
+  animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.inputGroup {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #ffff00;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
+}
+
+.input {
+  width: 100%;
+  padding: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border: 4px solid #00ffff;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #ffff00;
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.6);
+  transform: scale(1.01);
+}
+
+.input::placeholder {
+  color: #aaaaaa;
+  font-weight: 600;
+}
+
+/* Botones de tipo */
+.typeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.typeButton {
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 900;
+  border-radius: 15px;
+  border: 4px solid;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.typeButton.active {
+  background: linear-gradient(135deg, #ff00ff 0%, #cc00cc 100%);
+  border-color: #ffff00;
+  color: #ffffff;
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(255, 0, 255, 0.7);
+}
+
+.typeButton.inactive {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #00ffff;
+}
+
+.typeButton:hover {
+  transform: scale(1.05);
+}
+
+.textarea {
+  width: 100%;
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: 4px solid #00ffff;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  resize: vertical;
+  min-height: 100px;
+  transition: all 0.3s ease;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #ffff00;
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.6);
+  transform: scale(1.01);
+}
+
+/* GPS location */
+.locationGroup {
+  margin-bottom: 1.5rem;
+}
+
+.locationHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.gpsButton {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 900;
+  border-radius: 12px;
+  border: 3px solid #00ff00;
+  background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 255, 0, 0.5);
+}
+
+.gpsButton:hover:not(:disabled) {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 255, 0, 0.7);
+}
+
+.gpsButton:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.gpsDisplay {
+  background: rgba(255, 0, 255, 0.2);
+  border: 3px solid #ff00ff;
+  border-radius: 15px;
+  padding: 1.2rem;
+  backdrop-filter: blur(10px);
+}
+
+.gpsText {
+  font-size: 1.1rem;
+  font-weight: 900;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.gpsText.hasLocation {
+  color: #ffff00;
+}
+
+.gpsText.noLocation {
+  color: #ff00ff;
+}
+
+/* Lista de lugares */
+.placesList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.listTitle {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #ffff00;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.placeCard {
+  background: linear-gradient(135deg, #1a0066 0%, #2d0099 100%);
+  border: 5px solid #00ff00;
+  border-radius: 25px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 255, 0, 0.5);
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.placeCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: #ffff00;
+  box-shadow: 0 15px 40px rgba(0, 255, 0, 0.7);
+}
+
+.placeContent {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.placeIcon {
+  background: linear-gradient(135deg, #ff00ff 0%, #cc00cc 100%);
+  border: 4px solid #ffff00;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  flex-shrink: 0;
+  box-shadow: 0 8px 20px rgba(255, 0, 255, 0.6);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.placeInfo {
+  flex: 1;
+}
+
+.placeName {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #ffff00;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.placeAddress {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #00ffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.placeDescription {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ff00ff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 0.8rem;
+  line-height: 1.3;
+}
+
+.placeType {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ff00ff 0%, #cc00cc 100%);
+  border: 3px solid #ffff00;
+  border-radius: 15px;
+  color: #ffffff;
+  text-transform: capitalize;
+  box-shadow: 0 4px 10px rgba(255, 0, 255, 0.5);
+}
+
+.placeActions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.actionButton {
+  font-size: 2rem;
+  padding: 0.5rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));
+}
+
+.actionButton:hover {
+  transform: scale(1.4);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 1));
+}

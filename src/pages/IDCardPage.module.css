@@ -1,0 +1,425 @@
+/**
+ * IDCardPage - Tarjeta de identificación accesible
+ * Diseño tipo credencial con alto contraste
+ */
+
+.container {
+  min-height: 100vh;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #0a1929 0%, #1a3a52 100%);
+}
+
+/* Tarjeta ID principal */
+.idCard {
+  background: linear-gradient(135deg, #6600cc 0%, #9933ff 100%);
+  border: 6px solid #ffff00;
+  border-radius: 30px;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 20px 60px rgba(102, 0, 204, 0.6),
+              0 0 40px rgba(255, 255, 0, 0.4);
+  animation: cardEntrance 0.8s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.9) rotateY(10deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+  }
+}
+
+.idCard::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  transform: rotate(45deg);
+  animation: shine 3s ease infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(45deg);
+  }
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.profileCircle {
+  background: linear-gradient(135deg, #00ffff 0%, #00cccc 100%);
+  border: 5px solid #ffff00;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.6);
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.cardInfo {
+  text-align: right;
+}
+
+.cardBrand {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #00ffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
+}
+
+.cardNumber {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #ffff00;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
+  letter-spacing: 2px;
+}
+
+.userName {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #ffff00;
+  text-shadow: 0 0 20px rgba(255, 255, 0, 0.6),
+               0 4px 8px rgba(0, 0, 0, 1);
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+.userId {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #00ffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Grid de información básica */
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.infoBox {
+  background: rgba(0, 0, 0, 0.3);
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
+  padding: 1rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.infoBox:hover {
+  transform: scale(1.05);
+  border-color: #ffff00;
+  box-shadow: 0 5px 15px rgba(255, 255, 0, 0.5);
+}
+
+.infoLabel {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #00ffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 0.3rem;
+}
+
+.infoValue {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #ffff00;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Código QR */
+.qrSection {
+  background: #ffffff;
+  border: 5px solid #ffff00;
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 1;
+}
+
+.qrTitle {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #6600cc;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.qrCode {
+  margin-bottom: 1rem;
+}
+
+.qrDescription {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #6600cc;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Información expandida */
+.expandedInfo {
+  margin-top: 1.5rem;
+  animation: expandDown 0.5s ease;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes expandDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+    transform: translateY(0);
+  }
+}
+
+.detailBox {
+  background: rgba(0, 0, 0, 0.3);
+  border: 3px solid #ff00ff;
+  border-radius: 15px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.detailLabel {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #00ffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 0.5rem;
+}
+
+.detailValue {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #ffff00;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  line-height: 1.4;
+}
+
+/* Botón expandir */
+.expandButton {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.4);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 1;
+}
+
+.expandButton:hover {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: #ffff00;
+  transform: scale(1.02);
+}
+
+/* Botones de acción */
+.actionButtons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.actionButton {
+  padding: 1.3rem;
+  font-size: 1.3rem;
+  font-weight: 900;
+  border-radius: 20px;
+  border: 4px solid;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.actionButton.secondary {
+  background: linear-gradient(135deg, #00cccc 0%, #009999 100%);
+  border-color: #00ffff;
+  color: #000000;
+}
+
+.actionButton.primary {
+  background: linear-gradient(135deg, #ff00ff 0%, #cc00cc 100%);
+  border-color: #ffff00;
+  color: #ffffff;
+}
+
+.actionButton:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Formulario de edición */
+.formCard {
+  background: linear-gradient(135deg, #1a3a52 0%, #2a5a82 100%);
+  border: 5px solid #00ffff;
+  border-radius: 25px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+}
+
+.inputGroup {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #ffff00;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: 4px solid #00ffff;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: #ffff00;
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.6);
+  transform: scale(1.02);
+}
+
+/* Alert card */
+.alertCard {
+  background: rgba(255, 200, 0, 0.2);
+  border: 4px solid #ffcc00;
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.alertIcon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.alertText {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffff00;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  line-height: 1.5;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 3rem;
+}
+
+.spinner {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border: 8px solid #00ffff;
+  border-top-color: #ffff00;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .userName {
+    font-size: 2rem;
+  }
+  
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .actionButtons {
+    grid-template-columns: 1fr;
+  }
+}

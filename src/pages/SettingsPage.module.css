@@ -1,0 +1,362 @@
+/**
+ * SettingsPage.module.css - Configuración accesible
+ * Controles extra grandes y claros
+ */
+
+.settingsContainer {
+  min-height: 100vh;
+  padding: 1.5rem;
+  padding-bottom: 3rem;
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+}
+
+.settingCard {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  border: 5px solid #00ffff;
+  border-radius: 25px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+  animation: cardSlideIn 0.5s ease;
+}
+
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.settingHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.settingTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.settingIcon {
+  font-size: 3rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.settingTitle {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: #ffff00;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
+}
+
+.settingValue {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #00ffff;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Sliders */
+.slider {
+  width: 100%;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 1rem 0;
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #ff00ff 0%, #cc00cc 100%);
+  border: 4px solid #ffff00;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(255, 0, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 8px 20px rgba(255, 0, 255, 1);
+}
+
+.slider::-moz-range-thumb {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #ff00ff 0%, #cc00cc 100%);
+  border: 4px solid #ffff00;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(255, 0, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 8px 20px rgba(255, 0, 255, 1);
+}
+
+.sliderLabels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.sliderLabel {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #00ffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Botones de opción (idioma, tema, etc) */
+.optionGrid {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.optionGrid.cols2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.optionGrid.cols3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.optionButton {
+  padding: 1.5rem 1rem;
+  font-size: 1.4rem;
+  font-weight: 900;
+  border-radius: 20px;
+  border: 5px solid;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.optionButton::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 0, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease;
+}
+
+.optionButton:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.optionButton.active {
+  background: linear-gradient(135deg, #ff00ff 0%, #cc00cc 100%);
+  border-color: #ffff00;
+  color: #ffffff;
+  transform: scale(1.08);
+  box-shadow: 0 10px 30px rgba(255, 0, 255, 0.8);
+}
+
+.optionButton.inactive {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #00ffff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.optionButton:hover {
+  transform: scale(1.05);
+}
+
+/* Toggle switches */
+.toggleSwitch {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  height: 60px;
+}
+
+.toggleSwitch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggleSlider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #666 0%, #444 100%);
+  border: 4px solid #888;
+  border-radius: 30px;
+  transition: all 0.4s ease;
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.toggleSlider:before {
+  position: absolute;
+  content: "";
+  height: 46px;
+  width: 46px;
+  left: 4px;
+  bottom: 3px;
+  background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+input:checked + .toggleSlider {
+  background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+  border-color: #ffff00;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.7),
+              inset 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+input:checked + .toggleSlider:before {
+  transform: translateX(60px);
+  background: linear-gradient(135deg, #ffff00 0%, #ffcc00 100%);
+}
+
+.toggleText {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  font-weight: 900;
+  pointer-events: none;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.toggleText.off {
+  right: 12px;
+  color: #ffffff;
+}
+
+.toggleText.on {
+  left: 15px;
+  color: #000000;
+}
+
+input:checked + .toggleSlider .toggleText.off {
+  opacity: 0;
+}
+
+input:not(:checked) + .toggleSlider .toggleText.on {
+  opacity: 0;
+}
+
+/* Botones de acción */
+.testButton {
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 900;
+  border-radius: 20px;
+  border: 4px solid #ffff00;
+  background: linear-gradient(135deg, #ff00ff 0%, #cc00cc 100%);
+  color: #ffffff;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 20px rgba(255, 0, 255, 0.5);
+}
+
+.testButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(255, 0, 255, 0.8);
+}
+
+.resetButton {
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 900;
+  border-radius: 20px;
+  border: 4px solid #ff0000;
+  background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.5);
+}
+
+.resetButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(255, 0, 0, 0.8);
+}
+
+/* Info card */
+.infoCard {
+  background: rgba(255, 200, 0, 0.15);
+  border: 4px solid #ffcc00;
+  border-radius: 20px;
+  padding: 1.8rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+}
+
+.infoIcon {
+  font-size: 3rem;
+  flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.infoText {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffff00;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  line-height: 1.6;
+}

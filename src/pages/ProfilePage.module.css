@@ -1,0 +1,275 @@
+/**
+ * ProfilePage.module.css - Perfil de Usuario accesible
+ */
+
+.profileContainer {
+  min-height: 100vh;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #0a001a 0%, #1a0033 100%);
+}
+
+.profileHeader {
+  text-align: center;
+  background: linear-gradient(135deg, #2d0066 0%, #4d0099 100%);
+  border: 5px solid #00ffff;
+  border-radius: 30px;
+  padding: 2.5rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 15px 40px rgba(0, 255, 255, 0.5);
+  animation: headerEntrance 0.8s ease;
+}
+
+@keyframes headerEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.avatarCircle {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, #ff00ff 0%, #cc00cc 100%);
+  border: 6px solid #ffff00;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  box-shadow: 0 15px 40px rgba(255, 0, 255, 0.7);
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.profileName {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #ffff00;
+  text-shadow: 0 0 20px rgba(255, 255, 0, 0.6),
+               0 4px 8px rgba(0, 0, 0, 1);
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+}
+
+.profileUsername {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #00ffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.profileInfoCard {
+  background: linear-gradient(135deg, #1a0033 0%, #2d0066 100%);
+  border: 5px solid #ff00ff;
+  border-radius: 25px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(255, 0, 255, 0.5);
+}
+
+.infoGroup {
+  margin-bottom: 1.5rem;
+}
+
+.infoGroup:last-child {
+  margin-bottom: 0;
+}
+
+.infoLabel {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #00ffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.infoValue {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #ffff00;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+  border: 3px solid #00ff00;
+  border-radius: 20px;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 5px 15px rgba(0, 255, 0, 0.6);
+}
+
+.editButton {
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 900;
+  border-radius: 20px;
+  border: 4px solid #ffff00;
+  background: linear-gradient(135deg, #ff00ff 0%, #cc00cc 100%);
+  color: #ffffff;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 20px rgba(255, 0, 255, 0.5);
+}
+
+.editButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(255, 0, 255, 0.7);
+}
+
+.settingsButton {
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 900;
+  border-radius: 20px;
+  border: 4px solid #00ffff;
+  background: linear-gradient(135deg, #0099cc 0%, #006699 100%);
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 20px rgba(0, 153, 204, 0.5);
+}
+
+.settingsButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 153, 204, 0.7);
+}
+
+/* Form buttons */
+.formButtons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+.cancelButton {
+  padding: 1.3rem;
+  font-size: 1.3rem;
+  font-weight: 900;
+  border-radius: 20px;
+  border: 4px solid #ff0000;
+  background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.5);
+}
+
+.cancelButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(255, 0, 0, 0.7);
+}
+
+.saveButton {
+  padding: 1.3rem;
+  font-size: 1.3rem;
+  font-weight: 900;
+  border-radius: 20px;
+  border: 4px solid #00ff00;
+  background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 20px rgba(0, 255, 0, 0.5);
+}
+
+.saveButton:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 255, 0, 0.7);
+}
+
+.saveButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Loading & Empty states (común) */
+.loading {
+  text-align: center;
+  padding: 3rem;
+}
+
+.spinner {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border: 8px solid #00ffff;
+  border-top-color: #ffff00;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingText {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #ffff00;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.emptyState {
+  text-align: center;
+  padding: 3rem;
+}
+
+.emptyIcon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.emptyText {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #ffff00;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .typeGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .formButtons {
+    grid-template-columns: 1fr;
+  }
+}

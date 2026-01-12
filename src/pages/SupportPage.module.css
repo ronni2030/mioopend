@@ -1,0 +1,279 @@
+/**
+ * SupportPage.module.css - Soporte Técnico accesible
+ */
+
+.supportContainer {
+  min-height: 100vh;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #001a33 0%, #003366 100%);
+}
+
+.supportFormCard {
+  background: linear-gradient(135deg, #003366 0%, #004d99 100%);
+  border: 5px solid #00ffff;
+  border-radius: 25px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.5);
+  animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.supportInput {
+  width: 100%;
+  padding: 1.3rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border: 4px solid #00ffff;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.supportInput:focus {
+  outline: none;
+  border-color: #ffff00;
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.6);
+  transform: scale(1.01);
+}
+
+.priorityButtons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.priorityButton {
+  padding: 1.2rem 0.8rem;
+  font-size: 1.2rem;
+  font-weight: 900;
+  border-radius: 18px;
+  border: 4px solid;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.priorityButton.active {
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+}
+
+.priorityButton.low.active {
+  background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+  border-color: #00ff00;
+  color: #000000;
+}
+
+.priorityButton.medium.active {
+  background: linear-gradient(135deg, #ffcc00 0%, #ff9900 100%);
+  border-color: #ffff00;
+  color: #000000;
+}
+
+.priorityButton.high.active {
+  background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+  border-color: #ff0000;
+  color: #ffffff;
+}
+
+.priorityButton.inactive {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #00ffff;
+}
+
+.supportTextarea {
+  width: 100%;
+  padding: 1.3rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: 4px solid #00ffff;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  resize: vertical;
+  min-height: 140px;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.supportTextarea:focus {
+  outline: none;
+  border-color: #ffff00;
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.6);
+  transform: scale(1.01);
+}
+
+/* Tickets list */
+.ticketsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ticketCard {
+  background: linear-gradient(135deg, #001a33 0%, #003366 100%);
+  border: 5px solid #00ffff;
+  border-radius: 25px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.5);
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ticketCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 255, 255, 0.7);
+}
+
+.ticketHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.ticketTitle {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #ffff00;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  line-height: 1.4;
+  flex: 1;
+}
+
+.ticketBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: flex-end;
+}
+
+.ticketBadge {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 900;
+  border-radius: 15px;
+  border: 3px solid;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.ticketBadge.status {
+  background: linear-gradient(135deg, #ffcc00 0%, #ff9900 100%);
+  border-color: #ffff00;
+  color: #000000;
+}
+
+.ticketBadge.status.closed {
+  background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+  border-color: #00ff00;
+}
+
+.ticketBadge.status.inProgress {
+  background: linear-gradient(135deg, #0099ff 0%, #0066cc 100%);
+  border-color: #00ccff;
+  color: #ffffff;
+}
+
+.ticketBadge.priority.high {
+  background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+  border-color: #ff0000;
+  color: #ffffff;
+}
+
+.ticketBadge.priority.medium {
+  background: linear-gradient(135deg, #ffcc00 0%, #ff9900 100%);
+  border-color: #ffff00;
+  color: #000000;
+}
+
+.ticketBadge.priority.low {
+  background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+  border-color: #00ff00;
+  color: #000000;
+}
+
+.ticketDescription {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #00ffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.ticketResponse {
+  background: rgba(0, 153, 255, 0.2);
+  border: 3px solid #0099ff;
+  border-radius: 15px;
+  padding: 1.2rem;
+  margin-top: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.responseHeader {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #0099ff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 0.5rem;
+}
+
+.responseText {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .optionGrid.cols3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .priorityButtons {
+    grid-template-columns: 1fr;
+  }
+  
+  .ticketBadges {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .optionGrid.cols2 {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,413 @@
+/**
+ * IncidentsPage - Reportes de incidencias accesibles
+ * Colores de alerta vivos, alto contraste
+ */
+
+.container {
+  min-height: 100vh;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #1a0a00 0%, #331a00 100%);
+}
+
+/* Formulario de nueva incidencia */
+.formCard {
+  background: linear-gradient(135deg, #331a00 0%, #4d2600 100%);
+  border: 5px solid #ff9900;
+  border-radius: 25px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(255, 153, 0, 0.5);
+  animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #ffff00;
+  margin-bottom: 1rem;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
+}
+
+/* Botones de tipo de incidencia */
+.typeButtons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.typeButton {
+  padding: 1.5rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 900;
+  border-radius: 18px;
+  border: 4px solid;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.typeButton.active {
+  background: linear-gradient(135deg, #ff6600 0%, #cc5200 100%);
+  border-color: #ffff00;
+  color: #ffffff;
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(255, 102, 0, 0.7);
+}
+
+.typeButton.inactive {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ff9900;
+}
+
+.typeButton:hover {
+  transform: scale(1.05);
+}
+
+/* Área de texto */
+.textareaGroup {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #ffff00;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.textarea {
+  width: 100%;
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: 4px solid #ff9900;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  resize: vertical;
+  min-height: 120px;
+  transition: all 0.3s ease;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #ffff00;
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.6);
+  transform: scale(1.01);
+}
+
+.textarea::placeholder {
+  color: #aaaaaa;
+  font-weight: 600;
+}
+
+/* Ubicación GPS */
+.locationBox {
+  background: rgba(255, 102, 0, 0.2);
+  border: 3px solid #ff6600;
+  border-radius: 15px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.locationText {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #ffff00;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Botón enviar */
+.submitButton {
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 900;
+  border-radius: 20px;
+  border: 4px solid #00ff00;
+  background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 20px rgba(0, 255, 0, 0.5);
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 255, 0, 0.7);
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Lista de incidencias */
+.incidentsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.listTitle {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #ffff00;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.incidentCard {
+  background: linear-gradient(135deg, #1a0a00 0%, #331a00 100%);
+  border: 5px solid #ff6600;
+  border-radius: 25px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(255, 102, 0, 0.5);
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.incidentCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(255, 102, 0, 0.7);
+  border-color: #ffff00;
+}
+
+.incidentContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.incidentInfo {
+  flex: 1;
+}
+
+.incidentHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.incidentIcon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.incidentType {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #ffff00;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+
+.incidentDescription {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ff9900;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.incidentStatus {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 900;
+  border-radius: 20px;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.incidentStatus.pendiente {
+  background: linear-gradient(135deg, #ffcc00 0%, #ff9900 100%);
+  border: 3px solid #ffff00;
+  color: #000000;
+}
+
+.incidentStatus.resuelto {
+  background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+  border: 3px solid #00ff00;
+  color: #000000;
+}
+
+.incidentStatus.en_proceso {
+  background: linear-gradient(135deg, #0099ff 0%, #0066cc 100%);
+  border: 3px solid #00ccff;
+  color: #ffffff;
+}
+
+/* Botón eliminar */
+.deleteButton {
+  font-size: 2rem;
+  padding: 0.5rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));
+}
+
+.deleteButton:hover {
+  transform: scale(1.4) rotate(10deg);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 1));
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 3rem;
+  background: linear-gradient(135deg, #331a00 0%, #4d2600 100%);
+  border: 4px solid #ff9900;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(255, 153, 0, 0.4);
+}
+
+.spinner {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border: 8px solid #ff9900;
+  border-top-color: #ffff00;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingText {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #ffff00;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Empty state */
+.emptyState {
+  text-align: center;
+  padding: 3rem;
+  background: linear-gradient(135deg, #331a00 0%, #4d2600 100%);
+  border: 4px solid #ff6600;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(255, 102, 0, 0.4);
+}
+
+.emptyIcon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.emptyText {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #ffff00;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Botón agregar */
+.addButton {
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 900;
+  border-radius: 20px;
+  border: 4px solid;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.addButton.primary {
+  background: linear-gradient(135deg, #ff6600 0%, #cc5200 100%);
+  border-color: #ffff00;
+  color: #ffffff;
+}
+
+.addButton.danger {
+  background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+  border-color: #ff0000;
+  color: #ffffff;
+}
+
+.addButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .typeButtons {
+    grid-template-columns: 1fr;
+  }
+  
+  .incidentContent {
+    flex-direction: column;
+  }
+}
